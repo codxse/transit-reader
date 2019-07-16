@@ -29,3 +29,9 @@
   (fn [_ _] (rf/subscribe [:raw-input-value]))
   (fn [raw-input-value _]
     (with-out-str (pp/pprint (transit->edn raw-input-value)))))
+
+(rf/reg-sub
+  :transit-input-value
+  (fn [_ _] (rf/subscribe [:raw-input-value]))
+  (fn [raw-input-value _]
+    (edn->transit raw-input-value)))

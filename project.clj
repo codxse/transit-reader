@@ -2,8 +2,9 @@
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [org.clojure/clojurescript "1.10.520"]
                  [com.cognitect/transit-cljs "0.8.256"]
+                 [re-view/re-frame-simple "0.1.4"]
                  [reagent "0.8.1"]
-                 [re-frame "0.10.6"]]
+                 [re-frame "0.10.8"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]]
 

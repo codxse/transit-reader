@@ -2,6 +2,7 @@
   (:require
     [cognitect.transit :as transit]
     [re-frame.core :as rf]
+    [cljs.reader]
     [cljs.pprint :as pp]))
 
 (rf/reg-sub
@@ -21,8 +22,10 @@
       (catch js/Error e e))))
 
 (defn edn->transit [edn-format]
-  (let [w (transit/writer :json)]
-    (transit/write w edn-format)))
+  (let [w (transit/writer :json)
+        edn-format* (try (cljs.reader/read-string edn-format)
+                         (catch js/Error. e "NOT VALID EDN FORMAT!"))]
+    (transit/write w edn-format*)))
 
 (rf/reg-sub
   :edn-input-value

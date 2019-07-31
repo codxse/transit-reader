@@ -5,7 +5,7 @@
     [transit-reader.subs :as subs]
     [cljs.pprint :as pp]
     [re-view.re-frame-simple :as db]
-
+    [goog.object :as gobj]
     ))
 
 (defn log [& body]
@@ -35,6 +35,8 @@
                         [:textarea {:ref       (fn [element] (reset! !text-area element))
                                     :className "tl pa1 mb2 courier"
                                     :type      "text"
+                                    :value     (db/get :raw-input-value)
+                                    :onChange  (fn [e] (db/assoc! :raw-input-value (gobj/getValueByKeys e #js ["target" "value"])))
                                     :cols      "100"
                                     :rows      "40"}]
                         [:div {}
